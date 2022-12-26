@@ -352,19 +352,23 @@ class BagWidget(QWidget):
             self.progress_bar.setValue(self._timeline.background_progress)
 
             # Raw timestamp
-            self.stamp_label.setText('%.9fs' % self._timeline._timeline_frame.playhead.to_sec())
+            self.stamp_label.setText('%.9f' % self._timeline._timeline_frame.playhead.to_sec())
+            self.stamp_label.setTextInteractionFlags(Qt.TextSelectableByMouse)
 
             # Human-readable time
             self.date_label.setText(
                 bag_helper.stamp_to_str(self._timeline._timeline_frame.playhead))
+            self.date_label.setTextInteractionFlags(Qt.TextSelectableByMouse)
 
             # Elapsed time (in seconds)
             self.seconds_label.setText(
-                '%.3fs' % (
+                '%.3f' % (
                     self._timeline._timeline_frame.playhead - self._timeline._timeline_frame.start_stamp).to_sec())
+            self.seconds_label.setTextInteractionFlags(Qt.TextSelectableByMouse)
 
             # File size
             self.filesize_label.setText(bag_helper.filesize_to_str(self._timeline.file_size()))
+            self.filesize_label.setTextInteractionFlags(Qt.TextSelectableByMouse)
 
             # Play speed
             spd = self._timeline.play_speed
